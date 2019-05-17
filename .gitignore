@@ -6,7 +6,7 @@
 .pnp.js
 
 # Firebase cache
-.firebase/
+/.firebase
 
 # testing
 /coverage

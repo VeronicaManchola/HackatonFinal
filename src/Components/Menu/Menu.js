@@ -21,31 +21,37 @@ class Menu extends Component {
     render() {
         return (
             <div>
-                        <SideNav trigger={<Button />} options={{ closeOnClick: true }} className={"Button cyan accent-2"} >
-                            <SideNavItem userView user={{
-                                background: 'https://placeimg.com/640/480/tech',
-                                image: 'static/media/react-materialize-logo.824c6ea3.svg',
-                                name: 'John Doe'
-                            }}
-                            />
-                            <SideNavItem href="#!icon" icon="directions_bike">
-                                First Link With Icon
-                                </SideNavItem>
-                            <SideNavItem waves href="#!second">
-                                Second Link
+                <SideNav trigger={
+                    <Button className="btnNav btn-flat disabled">
+                        <a href=" " className="cyan-accent-2 z-depth 3">
+                            <i className="material-icons">menu</i>
+                        </a>
+                    </Button>} options={{ closeOnClick: true }}  >
+                    {/* <SideNavItem userView user={{
+                        background: 'https://placeimg.com/640/480/tech',
+                        image: 'static/media/react-materialize-logo.824c6ea3.svg',
+                        name: 'John Doe'
+                    }}
+                    /> */}
+                    <SideNavItem href="#!icon" icon="directions_bike">
+                        BiciHelper
                             </SideNavItem>
-                            <SideNavItem waves href="#!third">
-                                Third Link
+                    <SideNavItem divider />
+                    <SideNavItem waves href="#!second" icon="library_books">
+                        Historial
+                        </SideNavItem>
+                    <SideNavItem waves href="#!third" icon="favorite_border">
+                        Recomendaciones
+                        </SideNavItem>
+                    <SideNavItem waves href="#!fourth" icon="map">
+                        Mapa
+                        </SideNavItem>
+                    <SideNavItem divider />
+                    <SideNavItem subheader icon="help_outline">
+                        Ayuda
                             </SideNavItem>
-                            <SideNavItem waves href="#!fourth">
-                                Fourth Link
-                            </SideNavItem>
-                            <SideNavItem divider />
-                            <SideNavItem subheader>
-                                Subheader
-                            </SideNavItem>
-                        </SideNav>
-                </div>
+                </SideNav>
+            </div>
 
         )
     }

@@ -32,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <nav className="nav-wrapper cyan accent-2" >
+        <nav className="cyan accent-2" >
           <Menu />
         </nav>
         <div className="container">

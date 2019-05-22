@@ -26,32 +26,35 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
+        <nav className="nav-wrapper cyan accent-2" >
+          <Menu />
+        </nav>
+        <div className="container">
+          <div className="row">
+            <div className="col s3 offset-s4">
+              <h4 className="waves-effect waves-light btn"><Link to="/LoginEmail">Ingresar con Email</Link></h4>
+            </div>
+          </div>
 
-        <div className="row">
-          <div className="col s1 offset-s2">
-            <Menu />
+          <div className="row">
+            <div className="col s3 offset-s4">
+              <h4 className="waves-effect waves-light btn"><Link to="/LoginFacebook">Ingresar con Facebook</Link></h4>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col s3 offset-s4">
+              <h4 className="waves-effect waves-light btn"><Link to="/LoginGoogle">Ingresar con Google</Link></h4>
+            </div>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col s3 offset-s4">
-            <h4 className="waves-effect waves-light btn"><Link to="/LoginEmail">Ingresar con Email</Link></h4>
-          </div>
-        </div>
+      </div >
+      
 
-        <div className="row">
-          <div className="col s3 offset-s4">
-            <h4 className="waves-effect waves-light btn"><Link to="/LoginFacebook">Ingresar con Facebook</Link></h4>
-          </div>
-        </div>
 
-        <div className="row">
-          <div className="col s3 offset-s4">
-            <h4 className="waves-effect waves-light btn"><Link to="/LoginGoogle">Ingresar con Google</Link></h4>
-          </div>
-        </div>
-      </div>
+
     )
   }
 }

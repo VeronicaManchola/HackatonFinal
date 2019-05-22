@@ -13,7 +13,7 @@ export default class App extends React.Component {
   }
   componentDidMount() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
+      navigator.geolocation.watchPosition(
         (position) => {
           this.setState({
             ...this.state,

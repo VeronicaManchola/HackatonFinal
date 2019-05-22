@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 
-class LoginWithEmail extends Component {
+class RegisterForm extends Component {
 
     constructor(props){
         super(props);
@@ -22,14 +22,14 @@ class LoginWithEmail extends Component {
         const { email, password } = this.state;
         firebase
             .auth()
-            .signInWithEmailAndPassword(email, password)
-            .then((user) => {
+            .createUserWithEmailAndPassword(email, password)
+            .then(() => {
                 this.props.history.push('/Home');
                 console.log("logged in!")
             })
-            .catch((error) => {
+            .catch(function(error) {
                 this.setState({ error: error });
-            });
+          });
     };
 
     render() {
@@ -50,7 +50,7 @@ class LoginWithEmail extends Component {
                     </div>
                     <br />
                     <div className="row center-align">
-                        <button onClick={this.handleSubmit} className="waves-effect waves-light btn">Ingresar</button>
+                        <button onClick={this.handleSubmit} className="waves-effect waves-light btn">Registrate</button>
                     </div>
                 </div>
             </div>
@@ -58,4 +58,4 @@ class LoginWithEmail extends Component {
     }
 }
 
-export default LoginWithEmail;
+export default RegisterForm;

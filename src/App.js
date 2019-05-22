@@ -3,25 +3,30 @@ import { Link } from 'react-router-dom';
 import firebase from './Firebase.js'
 import Menu from './Components/Menu/Menu'
 import './App.css';
+import LoginWithEmail from './Components/Login/LoginEmail.js';
+import LoginWithFacebook from './Components/Login/LoginFacebook.js';
+import LoginWithGoogle from './Components/Login/LoginGoogle.js';
 
 class App extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       user: null
     }
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(function (user) {
+
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log("logged in!")
-        this.props.history.push("/");
+        console.log("logged in!");
+        this.props.history.push("/Home");
       } else {
         // No user is signed in.
-      }
-    });
+      };
+    })
+
   }
 
   render() {
@@ -32,29 +37,25 @@ class App extends Component {
         </nav>
         <div className="container">
           <div className="row">
-            <div className="col s3 offset-s4">
-              <h4 className="waves-effect waves-light btn"><Link to="/LoginEmail">Ingresar con Email</Link></h4>
-            </div>
+            <LoginWithEmail />
           </div>
-
           <div className="row">
             <div className="col s3 offset-s4">
-              <h4 className="waves-effect waves-light btn"><Link to="/LoginFacebook">Ingresar con Facebook</Link></h4>
+              <h4 className="waves-effect waves-light btn" onClick={() => { LoginWithFacebook() }}>Iniciar con Facebook</h4>
             </div>
           </div>
-
           <div className="row">
             <div className="col s3 offset-s4">
-              <h4 className="waves-effect waves-light btn"><Link to="/LoginGoogle">Ingresar con Google</Link></h4>
+              <h4 className="waves-effect waves-light btn" onClick={() => { LoginWithGoogle() }}>Ingresar con Google</h4>
             </div>
           </div>
-        </div>
-
-      </div >
-      
-
-
-
+          <div className="row">
+            <div className="col s10 offset-s1">
+              <span><Link to='./RegisterForm'></Link>¿No tienes una cuenta? Registrate aquí.</span>
+            </div>
+          </div>
+        </div >
+      </div>
     )
   }
 }

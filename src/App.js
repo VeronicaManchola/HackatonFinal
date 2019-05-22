@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from './Firebase.js'
+import Menu from './Components/Menu/Menu'
 import './App.css';
 
 class App extends Component {
@@ -26,6 +27,13 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+
+        <div className="row">
+          <div className="col s1 offset-s2">
+            <Menu />
+          </div>
+        </div>
+
         <div className="row">
           <div className="col s3 offset-s4">
             <h4 className="waves-effect waves-light btn"><Link to="/LoginEmail">Ingresar con Email</Link></h4>

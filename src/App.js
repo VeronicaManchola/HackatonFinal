@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from './Firebase.js'
-import M from "materialize-css";
+import Menu from './Components/Menu/Menu'
 import './App.css';
 import LoginWithEmail from './Components/Login/LoginEmail.js';
 import LoginWithFacebook from './Components/Login/LoginFacebook.js';
@@ -18,8 +18,6 @@ class App extends Component {
 
   componentDidMount() {
 
-    M.AutoInit();
-
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log("logged in!");
@@ -33,27 +31,28 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <LoginWithEmail />
-        </div>
-
-        <div className="row">
-          <div className="col s3 offset-s4">
-            <h4 className="waves-effect waves-light btn" onClick={() => { LoginWithFacebook() }}>Iniciar con Facebook</h4>
+      <div>
+        <nav className="nav-wrapper cyan accent-2" >
+          <Menu />
+        </nav>
+        <div className="container">
+          <div className="row">
+            <LoginWithEmail />
           </div>
-        </div>
-
-        <div className="row">
-          <div className="col s3 offset-s4">
-            <h4 className="waves-effect waves-light btn" onClick={() => { LoginWithGoogle() }}>Ingresar con Google</h4>
+          <div className="row">
+            <div className="col s3 offset-s4">
+              <h4 className="waves-effect waves-light btn" onClick={() => { LoginWithFacebook() }}>Iniciar con Facebook</h4>
+            </div>
           </div>
-        </div>
-
-        <div className="row">
-          <div className="col s10 offset-s2">
-            <h6><Link to="/RegisterForm">¿No tienes una cuenta? Registrate aquí.</Link></h6>
+          <div className="row">
+            <div className="col s3 offset-s4">
+              <h4 className="waves-effect waves-light btn" onClick={() => { LoginWithGoogle() }}>Ingresar con Google</h4>
+            </div>
           </div>
+          <div className="row">
+            <div className="col s10 offset-s2">
+              <span><Link to='./RegisterForm'></Link>¿No tienes una cuenta? Registrate aquí.</span>
+            </div>
         </div>
       </div>
     )

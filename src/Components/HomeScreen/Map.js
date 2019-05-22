@@ -14,6 +14,7 @@ export default class Map extends React.Component {
                 lng: props.lng,
             },
             zoom: props.zoom,
+            useHTTPS: true
         }
 
         this.markers = [];

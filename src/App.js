@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import firebase from './Firebase.js'
 import M from "materialize-css";
 import './App.css';
@@ -25,8 +26,9 @@ class App extends Component {
         this.props.history.push("/Home");
       } else {
         // No user is signed in.
-      }
-    });
+      };
+    })
+
   }
 
   render() {
@@ -45,6 +47,12 @@ class App extends Component {
         <div className="row">
           <div className="col s3 offset-s4">
             <h4 className="waves-effect waves-light btn" onClick={() => { LoginWithGoogle() }}>Ingresar con Google</h4>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col s10 offset-s1">
+            <span><Link to='./RegisterForm'></Link>¿No tienes una cuenta? Registrate aquí.</span>
           </div>
         </div>
       </div>

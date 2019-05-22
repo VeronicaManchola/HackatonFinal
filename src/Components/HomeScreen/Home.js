@@ -1,5 +1,6 @@
 import React from 'react';
 import Map from './Map.js';
+import LogOut from '../Login/LogOut.js';
 
 class Home extends React.Component {
     constructor(props) {
@@ -34,6 +35,11 @@ class Home extends React.Component {
     render() {
         return (
             <div>
+                <div className="container">
+                    <div className="row">
+                        <button onClick={() => LogOut(this.props)}>Cerrar sesión</button>
+                    </div>
+                </div>
                 <Map
                     app_id={this.state.app_id}
                     app_code={this.state.app_code}
@@ -42,7 +48,6 @@ class Home extends React.Component {
                     lng={this.state.lng ? this.state.lng : "-70.6693"}
                     marker={this.state.marker}
                 />
-
             </div>
         )
     }

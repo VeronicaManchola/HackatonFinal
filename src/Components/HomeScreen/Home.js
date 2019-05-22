@@ -7,13 +7,13 @@ class Home extends React.Component {
         super(props);
         this.state = {
             app_id: "fhk2odOlobSO5rRWPQ73",
-            app_code: "BgS4fH56ONRVytxVXgfF0w",
+            app_code: "BgS4fH56ONRVytxVXgfF0w"
         }
     }
 
     componentDidMount() {
         if (navigator.geolocation) {
-            navigator.geolocation.watchPosition(
+           let ref = navigator.geolocation.watchPosition(
                 (position) => {
                     this.setState({
                         ...this.state,
@@ -29,6 +29,7 @@ class Home extends React.Component {
                     })
                 }
             );
+            this.setState({watchId: ref})
         }
     }
 
@@ -37,7 +38,7 @@ class Home extends React.Component {
             <div>
                 <div className="container">
                     <div className="row">
-                        <button onClick={() => LogOut(this.props)}>Cerrar sesión</button>
+                        <button onClick={() => LogOut(this.props, this.state.watchId)}>Cerrar sesión</button>
                     </div>
                 </div>
                 <Map

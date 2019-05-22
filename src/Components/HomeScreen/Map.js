@@ -9,10 +9,10 @@ export default class Map extends React.Component {
         this.state = {
             app_id: props.app_id,
             app_code: props.app_code,
-            center: {
-                lat: props.lat,
-                lng: props.lng,
-            },
+            // center: {
+            //     lat: props.lat,
+            //     lng: props.lng,
+            // },
             zoom: props.zoom,
             useHTTPS: true
         }
@@ -31,7 +31,10 @@ export default class Map extends React.Component {
         this.map = new window.H.Map(
             mapContainer,
             defaultLayers.normal.map, {
-                center: this.state.center,
+                center: {
+                    lat: this.props.lat,
+                    lng: this.props.lng,
+                },
                 zoom: this.state.zoom,
             });
         //permite que se pueda hacer zoom en el mapa
@@ -50,8 +53,32 @@ export default class Map extends React.Component {
             lng: this.props.lng
         })
         this.map.addObjects([this.currentPosition])
-        }
 
+
+
+        //////////////////////////////////
+        fetch('https://places.cit.api.here.com/places/v1/autosuggest?at='+this.props.lat+'%2C'+this.props.lng+'&q=bicycle&Accept-Language=es-ES%2Ces%3Bq%3D0.9%2Cen%3Bq%3D0.8&app_id=fhk2odOlobSO5rRWPQ73&app_code=BgS4fH56ONRVytxVXgfF0w')
+        .then(data => data.json())
+        .then(data => {
+            let bikesPosition = data.results.filter(bicistore => {
+                return bicistore.position;
+            })
+            return bikesPosition;
+        })
+        .then(data => {
+            this.setState({
+                ...this.state,
+                bikeHelp: data,
+            }, 
+            ()=>{
+                console.log(this.state.bikeHelp)
+                this.showBicycleStores();
+            }
+            )    
+        })
+
+        ///////////////////////////
+        }
 
         componentDidUpdate() {
             if (this.currentPosition) {
@@ -60,7 +87,9 @@ export default class Map extends React.Component {
                     lat: this.props.lat,
                     lng: this.props.lng
                 })
+                // console.log(this.currentPosition);
                 this.map.addObjects([this.currentPosition])
+                this.map.setCenter({lat: this.props.lat, lng: this.props.lng});
             }
             // if (this.props.marker && this.markers.indexOf(this.props.marker) === -1) {
     
@@ -70,7 +99,14 @@ export default class Map extends React.Component {
             //     });
             //     this.map.addObjects([this.newMarker])
             // }   
-        }       
+        }     
+        
+        showBicycleStores() {
+            this.state.bikeHelp.forEach(bikes => {
+                let marker = new  window.H.map.Marker({lat:bikes.position[0], lng: bikes.position[1]})
+                this.map.addObject(marker);
+            });
+        }
             
     render() {
         return(

@@ -3,11 +3,15 @@ import firebase from 'firebase';
 
 class LoginWithEmail extends Component {
 
-    state = {
-        email: '',
-        password: '',
-        error: null
-    };
+    constructor(props){
+        super(props);
+
+        this.state = {
+            email: '',
+            password: '',
+            error: null
+        };
+    }
 
     handleInputChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });

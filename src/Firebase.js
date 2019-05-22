@@ -1,7 +1,5 @@
 import * as firebase from 'firebase';
 
-const settings = {};
-
 const config = {
     apiKey: "AIzaSyDUGgco_94yayaUfPyfF9HqDc4iJZkYTsc",
     authDomain: "hackatonfinal-3724f.firebaseapp.com",
@@ -13,7 +11,5 @@ const config = {
 };
 
 firebase.initializeApp(config);
-
-firebase.database().settings(settings);
 
 export default firebase;

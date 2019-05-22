@@ -37,11 +37,11 @@ class LoginWithEmail extends Component {
                 </div>
                 <div className="row">
                     <div className="col s5 center-align">
-                        <label for="inputEmail">Correo electrónico</label>
+                        <label htmlFor="inputEmail">Correo electrónico</label>
                         <input id="inputEmail" type="email" name="email" value={email} onChange={this.handleInputChange}></input>
                     </div>
                     <div className="col s5 center-align">
-                        <label for="inputPasword">Contraseña</label>
+                        <label htmlFor="inputPasword">Contraseña</label>
                         <input id="inputPasword" type="password" name="password" value={password} onChange={this.handleInputChange}></input>
                     </div>
                     <br />

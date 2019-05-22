@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 
-function LoginWithFacebook(){
-    let provider = new firebase.auth.FacebookAuthProvider();
+function LoginWithGoogle(){
+    let provider = new firebase.auth.GoogleAuthProvider();
 
     firebase
         .auth()
@@ -15,4 +15,4 @@ function LoginWithFacebook(){
         });
 }
 
-export default LoginWithFacebook;
+export default LoginWithGoogle;

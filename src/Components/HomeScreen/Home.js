@@ -1,7 +1,7 @@
 import React from 'react';
 import Map from './Map.js';
 import LogOut from '../Login/LogOut.js';
-import Menu from '../Menu/Menu.js';
+import MenuCiclist from '../Menu/MenuCiclist.js';
 import SearchBar from './SearchBar.js';
 
 class Home extends React.Component {
@@ -38,9 +38,7 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <nav className="nav-wrapper cyan accent-2" >
-                    <Menu />
-                </nav>
+                <MenuCiclist />
                 <div className="container">
                     <div className="row">
                         <button onClick={() => LogOut(this.props, this.state.watchId)}>Cerrar sesión</button>

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import { TextInput } from 'react-materialize';
+
 
 class LoginWithEmail extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -36,21 +38,18 @@ class LoginWithEmail extends Component {
         const { email, password, error } = this.state;
         return (
             <div className="container">
-                <div className="row center-align">
+                <div className="row center lgnemail">
                     {error ? <p>{error.message}</p> : null}
                 </div>
-                <div className="row">
-                    <div className="col s5 center-align">
-                        <label htmlFor="inputEmail">Correo electrónico</label>
-                        <input id="inputEmail" type="email" name="email" value={email} onChange={this.handleInputChange}></input>
-                    </div>
-                    <div className="col s5 center-align">
-                        <label htmlFor="inputPasword">Contraseña</label>
-                        <input id="inputPasword" type="password" name="password" value={password} onChange={this.handleInputChange}></input>
-                    </div>
-                    <br />
-                    <div className="row center-align">
-                        <button onClick={this.handleSubmit} className="waves-effect waves-light btn">Ingresar</button>
+                <div className="center">
+                    <div className="input-field col s12">
+                        {/* <label htmlFor="inputEmail"></label> */}
+                        <TextInput label="Correo Electrónico" id="inputEmail" type="email" name="email" value={email} onChange={this.handleInputChange} />
+                        {/* <label htmlFor="inputPasword"></label> */}
+                        <TextInput label="Contraseña" id="inputPasword" type="password" name="password" value={password} onChange={this.handleInputChange} />
+                        <br/>
+                        <br/>
+                        <button onClick={this.handleSubmit} className="waves-effect waves-light btn btnNav z-depth 3">Ingresar</button>
                     </div>
                 </div>
             </div>

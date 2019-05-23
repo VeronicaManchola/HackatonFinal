@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import firebase from './Firebase.js';
+import firebase from './Firebase.js'
 import './App.css';
 import LoginWithEmail from './Components/Login/LoginEmail.js';
 import LoginWithFacebook from './Components/Login/LoginFacebook.js';
@@ -31,24 +31,20 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <LoginWithEmail />
-        </div>
-        <div className="row">
-          <div className="col s3 offset-s4">
-            <h4 className="waves-effect waves-light btn" onClick={() => { LoginWithFacebook() }}>Iniciar con Facebook</h4>
+        <div className="container">
+          <div className="row">
+              <LoginWithEmail />
+            <div className="col s12 center socialBtn">
+              <h4 className="waves-effect small waves-light btn fbBtn" onClick={() => { LoginWithFacebook() }}>Iniciar con Facebook</h4>
+              <h4 className="waves-effect small waves-light btn gglBtn" onClick={() => { LoginWithGoogle() }}>Iniciar con Google</h4>
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col s3 offset-s4">
-            <h4 className="waves-effect waves-light btn" onClick={() => { LoginWithGoogle() }}>Ingresar con Google</h4>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col s10 offset-s2">
-            <span><Link to='./RegisterForm'>¿No tienes una cuenta? Registrate aquí.</Link></span>
-          </div>
+          <div className="row">
+            <div className="col s12 center lgnemail">
+              <span>
+                <Link to='./RegisterForm'>¿No tienes una cuenta?</Link></span>
+                <span className="textColor"> Registrate aquí.</span>
+            </div>
         </div>
       </div>
       </div>

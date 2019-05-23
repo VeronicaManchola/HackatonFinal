@@ -47,7 +47,7 @@ class App extends Component {
         </div>
         <div className="row">
           <div className="col s10 offset-s2">
-            <span><Link to='./RegisterForm'></Link>¿No tienes una cuenta? Registrate aquí.</span>
+            <span><Link to='./RegisterForm'>¿No tienes una cuenta? Registrate aquí.</Link></span>
           </div>
         </div>
       </div>

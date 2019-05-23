@@ -46,6 +46,9 @@ class Menu extends Component {
                     <SideNavItem waves href="#!fourth" icon="map">
                         Mapa
                         </SideNavItem>
+                    <SideNavItem waves href="#!fourth" icon="map">
+                        Cerrar Sesión
+                        </SideNavItem>
                     <SideNavItem divider />
                     <SideNavItem subheader icon="help_outline">
                         Ayuda

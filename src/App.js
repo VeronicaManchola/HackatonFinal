@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from './Firebase.js'
-import Menu from './Components/Menu/Menu'
+// import Menu from './Components/Menu/Menu'
 import './App.css';
 import LoginWithEmail from './Components/Login/LoginEmail.js';
 import LoginWithFacebook from './Components/Login/LoginFacebook.js';
@@ -32,26 +32,27 @@ class App extends Component {
   render() {
     return (
       <div>
-        <nav className="cyan accent-2" >
+        {/* <nav className="cyan accent-2" >
           <Menu />
-        </nav>
+        </nav> */}
         <div className="container">
           <div className="row">
-            <LoginWithEmail />
-          </div>
-          <div className="row">
-            <div className="col s3 offset-s4">
-              <h4 className="waves-effect waves-light btn" onClick={() => { LoginWithFacebook() }}>Iniciar con Facebook</h4>
+            {/* <div className="col s12 center">
+              <i className="material-icons medium loginBike">directions_bike</i> */}
+              <LoginWithEmail />
+            {/* </div> */}
+          {/* </div>
+          <div className="row"> */}
+            <div className="col s12 center socialBtn">
+              <h4 className="waves-effect small waves-light btn fbBtn" onClick={() => { LoginWithFacebook() }}>Iniciar con Facebook</h4>
+              <h4 className="waves-effect small waves-light btn gglBtn" onClick={() => { LoginWithGoogle() }}>Iniciar con Google</h4>
             </div>
           </div>
           <div className="row">
-            <div className="col s3 offset-s4">
-              <h4 className="waves-effect waves-light btn" onClick={() => { LoginWithGoogle() }}>Ingresar con Google</h4>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col s10 offset-s1">
-              <span><Link to='./RegisterForm'></Link>¿No tienes una cuenta? Registrate aquí.</span>
+            <div className="col s12 center lgnemail">
+              <span>
+                <Link to='./RegisterForm'></Link>¿No tienes una cuenta?</span>
+                <span className="textColor"> Registrate aquí.</span>
             </div>
           </div>
         </div >

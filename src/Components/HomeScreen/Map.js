@@ -2,7 +2,7 @@ import React from 'react';
 
 
 export default class Map extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.platform = null;
         this.map = null;
@@ -19,7 +19,7 @@ export default class Map extends React.Component {
             bikeHelp: [],
             bikeStore: [],
             bikeTechService: [],
-
+            ui: null
         }
 
         this.markers = [];
@@ -30,8 +30,8 @@ export default class Map extends React.Component {
     componentDidMount() {
         this.platform = new window.H.service.Platform(this.state);
 
-        var defaultLayers = this.platform.createDefaultLayers();
-        var mapContainer = this.refs["map-container"];
+        let defaultLayers = this.platform.createDefaultLayers();
+        let mapContainer = this.refs["map-container"];
 
         this.map = new window.H.Map(
             mapContainer,
@@ -43,13 +43,14 @@ export default class Map extends React.Component {
                 zoom: this.state.zoom,
             });
         //permite que se pueda hacer zoom en el mapa
-        var events = new window.H.mapevents.MapEvents(this.map);
+        let events = new window.H.mapevents.MapEvents(this.map);
         // eslint-disable-next-line
-        var behavior = new window.H.mapevents.Behavior(events);
+        let behavior = new window.H.mapevents.Behavior(events);
         // eslint-disable-next-line
-        var ui = new window.H.ui.UI.createDefault(this.map, defaultLayers)    
+        let ui = new window.H.ui.UI.createDefault(this.map, defaultLayers)
+        this.setState({ ui: ui });
 
-        if(this.currentPosition) {
+        if (this.currentPosition) {
             console.log(this.currentPosition)
             this.map.removeObjects([this.currentPosition])
         }
@@ -122,29 +123,42 @@ export default class Map extends React.Component {
             }
             )    
         })
-        //////////////////////////
-        }
+    }
 
-        componentDidUpdate() {
-            if (this.currentPosition) {
-                this.map.removeObjects([this.currentPosition])
-                this.currentPosition = new window.H.map.Marker({
-                    lat: this.props.lat,
-                    lng: this.props.lng
+    componentDidUpdate() {
+        if (this.currentPosition) {
+            this.map.removeObjects([this.currentPosition])
+            this.currentPosition = new window.H.map.Marker({
+                lat: this.props.lat,
+                lng: this.props.lng
+            })
+            // console.log(this.currentPosition);
+            this.map.addObjects([this.currentPosition])
+            this.map.setCenter({ lat: this.props.lat, lng: this.props.lng });
+        }
+        // if (this.props.marker && this.markers.indexOf(this.props.marker) === -1) {
+
+        //     this.newMarker = new window.H.map.Marker({
+        //         lat: this.props.marker.lat,
+        //         lng: this.props.marker.long
+        //     });
+        //     this.map.addObjects([this.newMarker])
+        // }   
+    }
+
+    showBicycleStores() {
+        this.state.bikeHelp.forEach(bikes => {
+            let marker = new window.H.map.Marker({ lat: bikes.position[0], lng: bikes.position[1] });
+            this.map.addObject(marker);
+            marker.addEventListener("tap", (evt) => {
+                let info = new window.H.ui.InfoBubble(evt.target.getPosition(), {
+                    content: `<h5>${bikes.title}</h5>
+                            <h6>${bikes.vicinity}</h6>`
                 })
-                // console.log(this.currentPosition);
-                this.map.addObjects([this.currentPosition])
-                this.map.setCenter({lat: this.props.lat, lng: this.props.lng});
-            }
-            // if (this.props.marker && this.markers.indexOf(this.props.marker) === -1) {
-    
-            //     this.newMarker = new window.H.map.Marker({
-            //         lat: this.props.marker.lat,
-            //         lng: this.props.marker.long
-            //     });
-            //     this.map.addObjects([this.newMarker])
-            // }   
-        }     
+                this.state.ui.addBubble(info);
+            }, false)
+        });
+    }   
 
         showBicycleTechService () {
             this.state.bikeTechService.forEach(bikes => {
@@ -172,10 +186,10 @@ export default class Map extends React.Component {
             });
             // console.log(this.map.getObjects())
         }
-            
+
     render() {
-        return(
-            <div   ref="map-container" style={{ width: '100%', height: '400px', background: 'grey'}}>
+        return (
+            <div ref="map-container" style={{ width: '100%', height: '400px', background: 'grey' }}>
             </div>
         )
     }

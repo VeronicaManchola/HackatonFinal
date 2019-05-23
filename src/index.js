@@ -4,7 +4,6 @@ import './index.css';
 import 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 import App from './App';
-import LoginWithEmail from './Components/Login/LoginEmail.js';
 import Home from './Components/HomeScreen/Home.js';
 import RegisterForm from './Components/Login/RegisterForm.js';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -14,7 +13,6 @@ ReactDOM.render(
     <Router>
         <div className="sheet">
             <Route exact path='/' component={App} />
-            <Route path='/loginEmail' component={LoginWithEmail} />
             <Route path='/Home' component={Home} />
             <Route path='/RegisterForm' component={RegisterForm} />
         </div>

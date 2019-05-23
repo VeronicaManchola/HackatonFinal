@@ -41,14 +41,11 @@ class App extends Component {
           </div>
           <div className="row">
             <div className="col s12 center lgnemail">
-              <span>
-                <Link to='./RegisterForm'>¿No tienes una cuenta?</Link></span>
-                <span className="textColor"> Registrate aquí.</span>
+              <span>¿No tienes una cuenta?</span>
+              <span><Link to='./RegisterForm' className="textColor"> Registrate aquí.</Link></span>
             </div>
         </div>
       </div>
-      </div>
-
     )
   }
 }

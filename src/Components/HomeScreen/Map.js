@@ -62,67 +62,67 @@ export default class Map extends React.Component {
 
         //////////////////////////////////this.props.lat para bicicletas
         fetch('https://places.cit.api.here.com/places/v1/browse?in=-33.41915,-70.6418;r=2000&q=bicicletas&Accept-Language=es-ES%2Ces%3Bq%3D0.9%2Cen%3Bq%3D0.8&app_id=fhk2odOlobSO5rRWPQ73&app_code=BgS4fH56ONRVytxVXgfF0w')
-        .then(data => data.json())
-        .then(data => {
-            console.log(data);
-            let bikesPosition = data.results.items.filter(bicistore => {
-                return bicistore.position;
+            .then(data => data.json())
+            .then(data => {
+                console.log(data);
+                let bikesPosition = data.results.items.filter(bicistore => {
+                    return bicistore.position;
+                })
+                return bikesPosition;
             })
-            return bikesPosition;
-        })
-        .then(data => {
-            this.setState({
-                ...this.state,
-                bikeHelp: data,
-            }, 
-            ()=>{
-                console.log(this.state.bikeHelp)
-                this.showBicycleStores();
-            }
-            )    
-        })
+            .then(data => {
+                this.setState({
+                    ...this.state,
+                    bikeHelp: data,
+                },
+                    () => {
+                        console.log(this.state.bikeHelp)
+                        this.showBicycleStores();
+                    }
+                )
+            })
         /////////////////////////// busca cicles pero estan lejos
         fetch('https://places.cit.api.here.com/places/v1/browse?in=-33.41915,-70.6418;r=5000&q=cicles&Accept-Language=es-ES%2Ces%3Bq%3D0.9%2Cen%3Bq%3D0.8&app_id=fhk2odOlobSO5rRWPQ73&app_code=BgS4fH56ONRVytxVXgfF0w')
-        .then(data => data.json())
-        .then(data => {
-            console.log(data);
-            let bikesPosition = data.results.items.filter(bicistore => {
-                return bicistore.position;
+            .then(data => data.json())
+            .then(data => {
+                console.log(data);
+                let bikesPosition = data.results.items.filter(bicistore => {
+                    return bicistore.position;
+                })
+                return bikesPosition;
             })
-            return bikesPosition;
-        })
-        .then(data => {
-            this.setState({
-                ...this.state,
-                bikeStore: data,
-            }, 
-            ()=>{
-                console.log(this.state.bikeStore)
-                this.showBicycleStoresReal();
-            }
-            )    
-        })
+            .then(data => {
+                this.setState({
+                    ...this.state,
+                    bikeStore: data,
+                },
+                    () => {
+                        console.log(this.state.bikeStore)
+                        this.showBicycleStoresReal();
+                    }
+                )
+            })
         ///////////////////////////servicio tecnico de bicicletas
         fetch('https://places.cit.api.here.com/places/v1/browse?in=-33.41915,-70.6418;r=5000&q=bici+taller&Accept-Language=es-ES%2Ces%3Bq%3D0.9%2Cen%3Bq%3D0.8&app_id=fhk2odOlobSO5rRWPQ73&app_code=BgS4fH56ONRVytxVXgfF0w')
-        .then(data => data.json())
-        .then(data => {
-            console.log(data);
-            let bikesPosition = data.results.items.filter(bicistore => {
-                return bicistore.position;
+            .then(data => data.json())
+            .then(data => {
+                console.log(data);
+                let bikesPosition = data.results.items.filter(bicistore => {
+                    return bicistore.position;
+                })
+                return bikesPosition;
             })
-            return bikesPosition;
-        })
-        .then(data => {
-            this.setState({
-                ...this.state,
-                bikeStore: data,
-            }, 
-            ()=>{
-                console.log(this.state.bikeStore)
-                this.showBicycleTechService();
-            }
-            )    
-        })
+            .then(data => {
+                this.setState({
+                    ...this.state,
+                    bikeStore: data,
+                },
+                    () => {
+                        console.log(this.state.bikeStore)
+                        this.showBicycleTechService();
+                    }
+                )
+            })
     }
 
     componentDidUpdate() {
@@ -146,9 +146,10 @@ export default class Map extends React.Component {
         // }   
     }
 
-    showBicycleStores() {
-        this.state.bikeHelp.forEach(bikes => {
-            let marker = new window.H.map.Marker({ lat: bikes.position[0], lng: bikes.position[1] });
+    showBicycleTechService() {
+        this.state.bikeTechService.forEach(bikes => {
+            let icon = new window.H.map.Icon('./assets/bike-parking.png', { size: new window.H.math.Size(26, 34) }, { anchor: new window.H.math.Point(14, 34) });
+            let marker = new window.H.map.Marker({ lat: bikes.position[0], lng: bikes.position[1] }, { icon: icon })
             this.map.addObject(marker);
             marker.addEventListener("tap", (evt) => {
                 let info = new window.H.ui.InfoBubble(evt.target.getPosition(), {
@@ -158,34 +159,40 @@ export default class Map extends React.Component {
                 this.state.ui.addBubble(info);
             }, false)
         });
-    }   
+        // console.log(this.map.getObjects())
+    }
 
-        showBicycleTechService () {
-            this.state.bikeTechService.forEach(bikes => {
-                let icon = new window.H.map.Icon('./assets/bike-parking.png', {size: new window.H.math.Size(26, 34)}, {anchor: new window.H.math.Point(14, 34)});
-                let marker = new  window.H.map.Marker({lat:bikes.position[0], lng: bikes.position[1]}, {icon:icon})
-                this.map.addObject(marker);
-            });
-            // console.log(this.map.getObjects())
-        }
+    showBicycleStores() {
+        this.state.bikeHelp.forEach(bikes => {
+            let icon = new window.H.map.Icon('./assets/marcadorbicicleta.png', { size: new window.H.math.Size(26, 34) }, { anchor: new window.H.math.Point(14, 34) });
+            let marker = new window.H.map.Marker({ lat: bikes.position[0], lng: bikes.position[1] }, { icon: icon })
+            this.map.addObject(marker);
+            marker.addEventListener("tap", (evt) => {
+                let info = new window.H.ui.InfoBubble(evt.target.getPosition(), {
+                    content: `<h5>${bikes.title}</h5>
+                            <h6>${bikes.vicinity}</h6>`
+                })
+                this.state.ui.addBubble(info);
+            }, false)
+        });
+        // console.log(this.map.getObjects())
+    }
 
-        showBicycleStores () {
-            this.state.bikeHelp.forEach(bikes => {
-                let icon = new window.H.map.Icon('./assets/marcadorbicicleta.png', {size: new window.H.math.Size(26, 34)}, {anchor: new window.H.math.Point(14, 34)});
-                let marker = new  window.H.map.Marker({lat:bikes.position[0], lng: bikes.position[1]}, {icon:icon})
-                this.map.addObject(marker);
-            });
-            // console.log(this.map.getObjects())
-        }
-
-        showBicycleStoresReal () {
-            this.state.bikeStore.forEach(bikes => {
-                let icon = new window.H.map.Icon('./assets/bike_map_marker_225-icon.png', {size: new window.H.math.Size(26, 34)}, {anchor: new window.H.math.Point(14, 34)});
-                let marker = new  window.H.map.Marker({lat:bikes.position[0], lng: bikes.position[1]}, {icon:icon})
-                this.map.addObject(marker);
-            });
-            // console.log(this.map.getObjects())
-        }
+    showBicycleStoresReal() {
+        this.state.bikeStore.forEach(bikes => {
+            let icon = new window.H.map.Icon('./assets/bike_map_marker_225-icon.png', { size: new window.H.math.Size(26, 34) }, { anchor: new window.H.math.Point(14, 34) });
+            let marker = new window.H.map.Marker({ lat: bikes.position[0], lng: bikes.position[1] }, { icon: icon })
+            this.map.addObject(marker);
+            marker.addEventListener("tap", (evt) => {
+                let info = new window.H.ui.InfoBubble(evt.target.getPosition(), {
+                    content: `<h5>${bikes.title}</h5>
+                            <h6>${bikes.vicinity}</h6>`
+                })
+                this.state.ui.addBubble(info);
+            }, false)
+        });
+        // console.log(this.map.getObjects())
+    }
 
     render() {
         return (

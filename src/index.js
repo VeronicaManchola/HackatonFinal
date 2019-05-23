@@ -6,6 +6,7 @@ import 'materialize-css/dist/css/materialize.min.css';
 import App from './App';
 import Home from './Components/HomeScreen/Home.js';
 import RegisterForm from './Components/Login/RegisterForm.js';
+import SosScreen from './Components/SosScreen/SosScreen.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
@@ -15,6 +16,7 @@ ReactDOM.render(
             <Route exact path='/' component={App} />
             <Route path='/Home' component={Home} />
             <Route path='/RegisterForm' component={RegisterForm} />
+            <Route path='/SosScreen' component={SosScreen} />
         </div>
     </Router>
     , document.getElementById('root'));

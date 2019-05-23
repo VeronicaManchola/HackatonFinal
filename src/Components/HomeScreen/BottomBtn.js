@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { a } from 'react-materialize'
+import { Link } from 'react-router-dom'
 
 class BottomBtn extends Component {
     render() {
@@ -8,14 +9,14 @@ class BottomBtn extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col s6 center btnbttm">
-                            <a href="#" className="btn-flat footrA">
+                            <Link to="/Home" className="btn-flat footrA">
                                 <i className="material-icons">build</i>
-                                <br />Talleres</a>
+                                <br />Talleres</Link>
                         </div>
                         <div className="col s6 center btnbttm">
-                            <a href="#" className="btn-flat footrA">
+                            <Link to="/SosScreen" className="btn-flat footrA">
                                 <i className="material-icons">directions_bike</i>
-                                <br />S.O.S</a>
+                                <br />S.O.S</Link>
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,7 @@ class MenuCiclist extends Component {
     render() {
         return (
             <nav className="btnNav">
+                <h6 className="brand-logo center">Talleres</h6>
                 <SideNav trigger={
                     <Button className="btnNav btn-flat pddng">
                         <a href=" " className="teal accent-3 z-depth 3">

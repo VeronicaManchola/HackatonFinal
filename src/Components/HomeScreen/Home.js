@@ -3,6 +3,7 @@ import Map from './Map.js';
 // import LogOut from '../Login/LogOut.js';
 import MenuCiclist from '../Menu/MenuCiclist.js';
 import SearchBar from './SearchBar.js';
+import BottomBtn from './BottomBtn.js';
 
 class Home extends React.Component {
     constructor(props) {
@@ -53,6 +54,7 @@ class Home extends React.Component {
                     marker={this.state.marker}
                 />
                 <SearchBar />
+                <BottomBtn />
             </div>
         )
     }

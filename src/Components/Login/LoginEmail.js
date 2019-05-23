@@ -44,11 +44,23 @@ class LoginWithEmail extends Component {
                 <div className="center">
                     <div className="input-field col s12">
                         {/* <label htmlFor="inputEmail"></label> */}
-                        <TextInput label="Correo Electrónico" id="inputEmail" type="email" name="email" value={email} onChange={this.handleInputChange} />
+                        <TextInput
+                            label="Correo Electrónico"
+                            id="inputEmail"
+                            type="email"
+                            name="email"
+                            value={email}
+                            onChange={this.handleInputChange} />
                         {/* <label htmlFor="inputPasword"></label> */}
-                        <TextInput label="Contraseña" id="inputPasword" type="password" name="password" value={password} onChange={this.handleInputChange} />
-                        <br/>
-                        <br/>
+                        <TextInput
+                            label="Contraseña"
+                            id="inputPasword"
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={this.handleInputChange} />
+                        <br />
+                        <br />
                         <button onClick={this.handleSubmit} className="waves-effect waves-light btn-flat btnNav z-depth 3">Ingresar</button>
                     </div>
                 </div>

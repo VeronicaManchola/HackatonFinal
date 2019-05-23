@@ -31,18 +31,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        {/* <nav className="cyan accent-2" >
-          <Menu />
-        </nav> */}
         <div className="container">
           <div className="row">
-            {/* <div className="col s12 center">
-              <i className="material-icons medium loginBike">directions_bike</i> */}
               <LoginWithEmail />
-            {/* </div> */}
-          {/* </div>
-          <div className="row"> */}
             <div className="col s12 center socialBtn">
               <h4 className="waves-effect small waves-light btn fbBtn" onClick={() => { LoginWithFacebook() }}>Iniciar con Facebook</h4>
               <h4 className="waves-effect small waves-light btn gglBtn" onClick={() => { LoginWithGoogle() }}>Iniciar con Google</h4>
@@ -54,8 +45,7 @@ class App extends Component {
                 <Link to='./RegisterForm'></Link>¿No tienes una cuenta?</span>
                 <span className="textColor"> Registrate aquí.</span>
             </div>
-          </div>
-        </div >
+        </div>
       </div>
     )
   }

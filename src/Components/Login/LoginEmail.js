@@ -49,7 +49,7 @@ class LoginWithEmail extends Component {
                         <TextInput label="Contraseña" id="inputPasword" type="password" name="password" value={password} onChange={this.handleInputChange} />
                         <br/>
                         <br/>
-                        <button onClick={this.handleSubmit} className="waves-effect waves-light btn btnNav z-depth 3">Ingresar</button>
+                        <button onClick={this.handleSubmit} className="waves-effect waves-light btn-flat btnNav z-depth 3">Ingresar</button>
                     </div>
                 </div>
             </div>

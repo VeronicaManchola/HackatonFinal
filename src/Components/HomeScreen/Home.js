@@ -1,6 +1,6 @@
 import React from 'react';
 import Map from './Map.js';
-import LogOut from '../Login/LogOut.js';
+// import LogOut from '../Login/LogOut.js';
 import MenuCiclist from '../Menu/MenuCiclist.js';
 import SearchBar from './SearchBar.js';
 
@@ -39,11 +39,11 @@ class Home extends React.Component {
         return (
             <div>
                 <MenuCiclist />
-                <div className="container">
+                {/* <div className="container">
                     <div className="row">
                         <button onClick={() => LogOut(this.props, this.state.watchId)}>Cerrar sesión</button>
                     </div>
-                </div>
+                </div> */}
                 <Map
                     app_id={this.state.app_id}
                     app_code={this.state.app_code}
@@ -52,9 +52,7 @@ class Home extends React.Component {
                     lng={this.state.lng ? this.state.lng : "-70.6693"}
                     marker={this.state.marker}
                 />
-                <div className="row">
-                    <SearchBar />
-                </div>
+                <SearchBar />
             </div>
         )
     }

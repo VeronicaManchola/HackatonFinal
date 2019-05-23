@@ -11,8 +11,8 @@ class MenuCiclist extends Component {
         return (
             <nav className="btnNav">
                 <SideNav trigger={
-                    <Button className="btnNav btn-flat">
-                        <a href=" " className="cyan-accent-2 z-depth 3">
+                    <Button className="btnNav btn-flat pddng">
+                        <a href=" " className="teal accent-3 z-depth 3">
                             <i className="material-icons">menu</i>
                         </a>
                     </Button>} options={{ closeOnClick: true }}>

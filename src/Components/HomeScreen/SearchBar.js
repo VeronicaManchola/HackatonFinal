@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { TextInput } from 'react-materialize';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -21,13 +22,21 @@ class SearchBar extends Component {
     render() {
         const address = this.state.address;
         return (
-            <div className="container">
+            <div className="container center">
                 <div className="row">
-                    <div className="col s5 offset-s3">
-                        <input id="inputAddress" name="address" value={address} placeholder="Dirección del taller" onChange={this.handleInputChange}></input>
+                    <div className="col s1 searchBar anotherClass">
+                        <i className="material-icons lctnIcon">location_on</i>
                     </div>
-                    <div className="cols3">
-                        <button onClick={this.handleSubmit} className="waves-effect waves-light btn">Ir</button>
+                    <div className="col s8 searchBar">
+                        <TextInput
+                            id="inputAddress"
+                            name="address" value={address}
+                            placeholder="Ingresar dirección del taller"
+                            onChange={this.handleInputChange}>
+                        </TextInput>
+                    </div>
+                    <div className="col s3 searchBar">
+                        <button onClick={this.handleSubmit} className="waves-effect waves-light btn-flat btnNav white-text btnIr center">Ir</button>
                     </div>
                 </div>
             </div>

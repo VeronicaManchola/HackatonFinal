@@ -35,8 +35,8 @@ class App extends Component {
           <div className="row">
               <LoginWithEmail />
             <div className="col s12 center socialBtn">
-              <h4 className="waves-effect small waves-light btn fbBtn" onClick={() => { LoginWithFacebook() }}>Iniciar con Facebook</h4>
-              <h4 className="waves-effect small waves-light btn gglBtn" onClick={() => { LoginWithGoogle() }}>Iniciar con Google</h4>
+              <h4 className="waves-effect small waves-light btn-flat fbBtn" onClick={() => { LoginWithFacebook() }}>Iniciar con Facebook</h4>
+              <h4 className="waves-effect small waves-light btn-flat gglBtn" onClick={() => { LoginWithGoogle() }}>Iniciar con Google</h4>
             </div>
           </div>
           <div className="row">

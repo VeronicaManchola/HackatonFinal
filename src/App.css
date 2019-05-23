@@ -7,10 +7,10 @@ a {
 }
 
 .btnNav {
-  background-color: #18ffff;
+  background-color: #1de9b6;
 }
 
-.btn-flat {
+.pddng {
   padding-left: 0 !important;
 }
 
@@ -32,7 +32,7 @@ a {
 }
 
 .textColor {
-  color: #18ffff;
+  color: #1de9b6;
 }
 
 .input-field {
@@ -43,4 +43,30 @@ a {
 
 .lgnemail, .socialBtn {
   margin-top: 70px;
+}
+
+.searchBar {
+  margin-top: 20px;
+  padding-right: 0px;
+  padding-left: 5px;
+}
+
+.lctnIcon {
+  color: #b0bec5;
+  font-size: 40px;
+}
+
+.btnIr {
+  width: 50px;
+  height: 40px;
+  margin-right: 0px;
+  margin-left: 15px;
+}
+
+#inputAddress {
+  width: 220px;
+}
+
+.anotherClass {
+  padding-left: 5px;
 }

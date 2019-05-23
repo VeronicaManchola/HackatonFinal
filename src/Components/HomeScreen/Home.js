@@ -2,6 +2,7 @@ import React from 'react';
 import Map from './Map.js';
 import LogOut from '../Login/LogOut.js';
 import MenuCiclist from '../Menu/MenuCiclist.js';
+import SearchBar from './SearchBar.js';
 
 class Home extends React.Component {
     constructor(props) {
@@ -51,6 +52,9 @@ class Home extends React.Component {
                     lng={this.state.lng ? this.state.lng : "-70.6693"}
                     marker={this.state.marker}
                 />
+                <div className="row">
+                    <SearchBar />
+                </div>
             </div>
         )
     }

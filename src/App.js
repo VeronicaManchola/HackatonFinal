@@ -20,6 +20,7 @@ class App extends Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log("logged in!");
+        this.setState({ user: user });
         this.props.history.push("/Home");
       } else {
         // No user is signed in.
@@ -41,11 +42,13 @@ class App extends Component {
           <div className="row">
             <div className="col s12 center lgnemail">
               <span>
-                <Link to='./RegisterForm'></Link>¿No tienes una cuenta?</span>
+                <Link to='./RegisterForm'>¿No tienes una cuenta?</Link></span>
                 <span className="textColor"> Registrate aquí.</span>
             </div>
         </div>
       </div>
+      </div>
+
     )
   }
 }

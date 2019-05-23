@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from './Firebase.js'
-// import Menu from './Components/Menu/Menu'
 import './App.css';
 import LoginWithEmail from './Components/Login/LoginEmail.js';
 import LoginWithFacebook from './Components/Login/LoginFacebook.js';

@@ -10,6 +10,10 @@ a {
   background-color: #18ffff;
 }
 
+.btn-flat {
+  padding-left: 0 !important;
+}
+
 .loginBike {
   margin-top: 20px;
   
@@ -26,14 +30,17 @@ a {
   margin-top: 5px;
   margin-bottom: 50px
 }
+
 .textColor {
   color: #18ffff;
 }
+
 .input-field {
   margin: 0;
   padding-left: 5px;
   padding-bottom: 10px;
 }
+
 .lgnemail, .socialBtn {
   margin-top: 70px;
 }

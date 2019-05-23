@@ -1,6 +1,7 @@
 import React from 'react';
 import Map from './Map.js';
 import LogOut from '../Login/LogOut.js';
+import MenuCiclist from '../Menu/MenuCiclist.js';
 
 class Home extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         if (navigator.geolocation) {
-           let ref = navigator.geolocation.watchPosition(
+            let ref = navigator.geolocation.watchPosition(
                 (position) => {
                     this.setState({
                         ...this.state,
@@ -29,13 +30,14 @@ class Home extends React.Component {
                     })
                 }
             );
-            this.setState({watchId: ref})
+            this.setState({ watchId: ref })
         }
     }
 
     render() {
         return (
             <div>
+                <MenuCiclist />
                 <div className="container">
                     <div className="row">
                         <button onClick={() => LogOut(this.props, this.state.watchId)}>Cerrar sesión</button>

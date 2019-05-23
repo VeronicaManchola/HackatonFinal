@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-// import M from 'materialize-css'
 import 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 import { SideNav, SideNavItem, Button } from 'react-materialize';
 
-class Menu extends Component {
+class MenuTaller extends Component {
     // constructor() {
     //     super();
     // }
@@ -22,7 +21,7 @@ class Menu extends Component {
         return (
             <div>
                 <SideNav trigger={
-                    <Button className="btnNav btn-flat disabled">
+                    <Button className="btnNav btn-flat">
                         <a href=" " className="cyan-accent-2 z-depth 3">
                             <i className="material-icons">menu</i>
                         </a>
@@ -30,7 +29,8 @@ class Menu extends Component {
                     {/* <SideNavItem userView user={{
                         background: 'https://placeimg.com/640/480/tech',
                         image: 'static/media/react-materialize-logo.824c6ea3.svg',
-                        name: 'John Doe'
+                        name: 'Nombre',
+                        Bicicleta: 'Modelo Bicicleta'
                     }}
                     /> */}
                     <SideNavItem href="#!icon" icon="directions_bike">
@@ -46,7 +46,7 @@ class Menu extends Component {
                     <SideNavItem waves href="#!fourth" icon="map">
                         Mapa
                         </SideNavItem>
-                    <SideNavItem waves href="#!fourth" icon="map">
+                    <SideNavItem waves href="#!fourth" icon="exit_to_app">
                         Cerrar Sesión
                         </SideNavItem>
                     <SideNavItem divider />
@@ -61,4 +61,4 @@ class Menu extends Component {
 }
 
 
-export default Menu
+export default MenuTaller

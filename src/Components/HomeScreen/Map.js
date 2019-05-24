@@ -10,10 +10,8 @@ export default class Map extends React.Component {
         this.state = {
             app_id: props.app_id,
             app_code: props.app_code,
-            // center: {
-            //     lat: props.lat,
-            //     lng: props.lng,
-            // },
+            // lat:  "-33.4188252",
+            // lng: "-70.6423271",
             zoom: props.zoom,
             useHTTPS: true,
             bikeHelp: [],
@@ -62,11 +60,35 @@ export default class Map extends React.Component {
         })
         this.map.addObjects([this.currentPosition])
 
+        if (navigator.geolocation) {
+                let ref = navigator.geolocation.watchPosition(
+                    (position) => {
+                        this.setState({
+                            ...this.state,
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                            error: null,
+                        });
+                        this.fetchFunction(position.coords.latitude,position.coords.longitude);
+                    },
+                    (error) => {
+                        this.setState({
+                            ...this.state,
+                            error: error.message
+                        })
+                    }
+                );
+                this.setState({ watchId: ref })
+        }
+
+    }
+
+    fetchFunction(lat,lng) {
         //////////////////////////////////this.props.lat para bicicletas
-        fetch('https://places.cit.api.here.com/places/v1/browse?in=-33.41915,-70.6418;r=2000&q=bicicletas&Accept-Language=es-ES%2Ces%3Bq%3D0.9%2Cen%3Bq%3D0.8&app_id=fhk2odOlobSO5rRWPQ73&app_code=BgS4fH56ONRVytxVXgfF0w')
+        fetch(`https://places.cit.api.here.com/places/v1/browse?in=${lat},${lng};r=2000&q=bicicletas&Accept-Language=es-ES%2Ces%3Bq%3D0.9%2Cen%3Bq%3D0.8&app_id=fhk2odOlobSO5rRWPQ73&app_code=BgS4fH56ONRVytxVXgfF0w`)
             .then(data => data.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 let bikesPosition = data.results.items.filter(bicistore => {
                     return bicistore.position;
                 })
@@ -83,11 +105,11 @@ export default class Map extends React.Component {
                     }
                 )
             })
-        /////////////////////////// busca cicles pero estan lejos
-        fetch('https://places.cit.api.here.com/places/v1/browse?in=-33.41915,-70.6418;r=5000&q=cicles&Accept-Language=es-ES%2Ces%3Bq%3D0.9%2Cen%3Bq%3D0.8&app_id=fhk2odOlobSO5rRWPQ73&app_code=BgS4fH56ONRVytxVXgfF0w')
+        /////////////////////////// busca cicles pero estan lejos this.props.lat
+        fetch(`https://places.cit.api.here.com/places/v1/browse?in=${lat},${lng};r=5000&q=cicles&Accept-Language=es-ES%2Ces%3Bq%3D0.9%2Cen%3Bq%3D0.8&app_id=fhk2odOlobSO5rRWPQ73&app_code=BgS4fH56ONRVytxVXgfF0w`)
             .then(data => data.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 let bikesPosition = data.results.items.filter(bicistore => {
                     return bicistore.position;
                 })
@@ -105,10 +127,10 @@ export default class Map extends React.Component {
                 )
             })
         ///////////////////////////servicio tecnico de bicicletas
-        fetch('https://places.cit.api.here.com/places/v1/browse?in=-33.41915,-70.6418;r=5000&q=bici+taller&Accept-Language=es-ES%2Ces%3Bq%3D0.9%2Cen%3Bq%3D0.8&app_id=fhk2odOlobSO5rRWPQ73&app_code=BgS4fH56ONRVytxVXgfF0w')
+        fetch(`https://places.cit.api.here.com/places/v1/browse?in=${lat},${lng};r=5000&q=bici+taller&Accept-Language=es-ES%2Ces%3Bq%3D0.9%2Cen%3Bq%3D0.8&app_id=fhk2odOlobSO5rRWPQ73&app_code=BgS4fH56ONRVytxVXgfF0w`)
             .then(data => data.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 let bikesPosition = data.results.items.filter(bicistore => {
                     return bicistore.position;
                 })
@@ -117,7 +139,7 @@ export default class Map extends React.Component {
             .then(data => {
                 this.setState({
                     ...this.state,
-                    bikeStore: data,
+                    bikeTechService: data,
                 },
                     () => {
                         console.log(this.state.bikeStore)
@@ -138,19 +160,11 @@ export default class Map extends React.Component {
             this.map.addObjects([this.currentPosition])
             this.map.setCenter({ lat: this.props.lat, lng: this.props.lng });
         }
-        // if (this.props.marker && this.markers.indexOf(this.props.marker) === -1) {
-
-        //     this.newMarker = new window.H.map.Marker({
-        //         lat: this.props.marker.lat,
-        //         lng: this.props.marker.long
-        //     });
-        //     this.map.addObjects([this.newMarker])
-        // }   
     }
 
     showBicycleTechService() {
         this.state.bikeTechService.forEach(bikes => {
-            let icon = new window.H.map.Icon('./assets/bike-parking.png', { size: new window.H.math.Size(26, 34) }, { anchor: new window.H.math.Point(14, 34) });
+            let icon = new window.H.map.Icon('./assets/pointer_taller.png', { size: new window.H.math.Size(26, 34) }, { anchor: new window.H.math.Point(14, 34) });
             let marker = new window.H.map.Marker({ lat: bikes.position[0], lng: bikes.position[1] }, { icon: icon })
             this.map.addObject(marker);
             marker.addEventListener("tap", (evt) => {
@@ -168,7 +182,7 @@ export default class Map extends React.Component {
 
     showBicycleStores() {
         this.state.bikeHelp.forEach(bikes => {
-            let icon = new window.H.map.Icon('./assets/marcadorbicicleta.png', { size: new window.H.math.Size(26, 34) }, { anchor: new window.H.math.Point(14, 34) });
+            let icon = new window.H.map.Icon('./assets/pointer_tienda.png', { size: new window.H.math.Size(26, 34) }, { anchor: new window.H.math.Point(14, 34) });
             let marker = new window.H.map.Marker({ lat: bikes.position[0], lng: bikes.position[1] }, { icon: icon })
             this.map.addObject(marker);
             marker.addEventListener("tap", (evt) => {
@@ -186,7 +200,7 @@ export default class Map extends React.Component {
 
     showBicycleStoresReal() {
         this.state.bikeStore.forEach(bikes => {
-            let icon = new window.H.map.Icon('./assets/bike_map_marker_225-icon.png', { size: new window.H.math.Size(26, 34) }, { anchor: new window.H.math.Point(14, 34) });
+            let icon = new window.H.map.Icon('./assets/pointer_taller.png', { size: new window.H.math.Size(28, 36) }, { anchor: new window.H.math.Point(14, 34) });
             let marker = new window.H.map.Marker({ lat: bikes.position[0], lng: bikes.position[1] }, { icon: icon })
             this.map.addObject(marker);
             marker.addEventListener("tap", (evt) => {

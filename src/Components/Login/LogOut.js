@@ -1,19 +1,24 @@
+import React, { Component } from 'react';
+import { SideNavItem } from 'react-materialize';
 import firebase from 'firebase';
 
-function LogOut(props, watchId) {
+class LogOut extends Component {
 
-    firebase
+    handleClick(){
+        firebase
         .auth()
         .signOut()
-        .then(function () {
+        .then(() => {
             console.log("logged out!");
-            navigator.geolocation.clearWatch(watchId);
-            props.history.push("/");
         })
-        .catch(function (error) {
+        .catch((error) => {
             console.log(error.message);
         });
+    }
 
+    render(){
+        return <SideNavItem waves href="#!seventh" icon="exit_to_app" onClick={this.handleClick}>Cerrar sesión</SideNavItem>
+    }
 }
 
 export default LogOut;

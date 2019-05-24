@@ -9,7 +9,11 @@ class Home extends React.Component {
         super(props);
         this.state = {
             app_id: "fhk2odOlobSO5rRWPQ73",
-            app_code: "BgS4fH56ONRVytxVXgfF0w"
+            app_code: "BgS4fH56ONRVytxVXgfF0w",
+            lat: false,
+            lng: false,
+            // lat: "-33.41915",
+            // lng: "-70.6418",
         }
     }
 
@@ -44,14 +48,14 @@ class Home extends React.Component {
                         <button onClick={() => LogOut(this.props, this.state.watchId)}>Cerrar sesión</button>
                     </div>
                 </div>
-                <Map
+                {this.state.lat && <Map
                     app_id={this.state.app_id}
                     app_code={this.state.app_code}
                     zoom="14"
-                    lat={this.state.lat ? this.state.lat : "-33.4489"}
-                    lng={this.state.lng ? this.state.lng : "-70.6693"}
+                    lat= {this.state.lat}
+                    lng={this.state.lng}
                     marker={this.state.marker}
-                />
+                />}
                 <div className="row">
                     <SearchBar />
                 </div>

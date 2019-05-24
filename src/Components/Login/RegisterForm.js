@@ -3,7 +3,7 @@ import firebase from 'firebase';
 
 class RegisterForm extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -27,9 +27,9 @@ class RegisterForm extends Component {
                 this.props.history.push('/Home');
                 console.log("logged in!")
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 this.setState({ error: error });
-          });
+            });
     };
 
     render() {

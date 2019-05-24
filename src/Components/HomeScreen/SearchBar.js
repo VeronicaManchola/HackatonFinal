@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { TextInput } from 'react-materialize';
 import { Link } from 'react-router-dom';
 
 class SearchBar extends Component {
@@ -28,13 +29,22 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container center">
                 <div className="row">
-                    <div className="col s5 offset-s3">
-                        <input id="inputAddress" coord={this.state.latLng} value={this.state.address} placeholder="Dirección del taller" onChange={this.handleChange}></input>
+                    <div className="col s1 searchBar anotherClass">
+                        <i className="material-icons lctnIcon">location_on</i>
                     </div>
-                    <div className="cols3">
-                        <h4><Link to={{ pathname: "/HwgMap", state: { address: this.state.address, latLng: this.state.latLng}}} className="waves-effect waves-light btn">Ir</Link></h4>
+                    <div className="col s8 searchBar">
+                        <TextInput
+                            id="inputAddress"
+                            coord={this.state.latLng}
+                            value={this.state.address}
+                            placeholder="Ingresar dirección del taller"
+                            onChange={this.handleChange}>
+                        </TextInput>
+                    </div>
+                    <div className="col s3 searchBar">
+                        <h4><Link to={{ pathname: "/HwgMap", state: { address: this.state.address, latLng: this.state.latLng}}} className="waves-effect waves-light btn-flat btnNav white-text btnIr center">Ir</Link></h4>
                     </div>
                 </div>
             </div>

@@ -61,7 +61,7 @@ class LoginWithEmail extends Component {
                             onChange={this.handleInputChange} />
                         <br />
                         <br />
-                        <button onClick={this.handleSubmit} className="waves-effect waves-light btn-flat btnNav z-depth 3">Ingresar</button>
+                        <button onClick={this.handleSubmit} className="waves-effect waves-light btn-flat white-text btnNav z-depth 3">Ingresar</button>
                     </div>
                 </div>
             </div>

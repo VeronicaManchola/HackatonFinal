@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { a } from 'react-materialize'
 import { Link } from 'react-router-dom'
 
 class BottomBtn extends Component {

@@ -31,19 +31,22 @@ class App extends Component {
 
   render() {
     return (
-        <div className="container">
-          <div className="row">
-              <LoginWithEmail />
-            <div className="col s12 center socialBtn">
-              <h4 className="waves-effect small waves-light btn-flat fbBtn" onClick={() => { LoginWithFacebook() }}>Iniciar con Facebook</h4>
-              <h4 className="waves-effect small waves-light btn-flat gglBtn" onClick={() => { LoginWithGoogle() }}>Iniciar con Google</h4>
-            </div>
+      <div className="container">
+        <div className="row">
+          <h5 className="center titllle textColor">
+            <strong>BICIHELPER</strong>
+          </h5>
+          <LoginWithEmail />
+          <div className="col s12 center socialBtn">
+            <h4 className="waves-effect small waves-light white-text btn-flat fbBtn" onClick={() => { LoginWithFacebook() }}>Iniciar con Facebook</h4>
+            <h4 className="waves-effect small waves-light white-text btn-flat gglBtn" onClick={() => { LoginWithGoogle() }}>Iniciar con Google</h4>
           </div>
-          <div className="row">
-            <div className="col s12 center lgnemail">
-              <span>¿No tienes una cuenta?</span>
-              <span><Link to='./RegisterForm' className="textColor"> Registrate aquí.</Link></span>
-            </div>
+        </div>
+        <div className="row">
+          <div className="col s12 center lgnemail">
+            <span>¿No tienes una cuenta?</span>
+            <span><Link to='./RegisterForm' className="textColor"> Registrate aquí.</Link></span>
+          </div>
         </div>
       </div>
     )

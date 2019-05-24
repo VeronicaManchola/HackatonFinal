@@ -21,7 +21,6 @@ a {
 
 .loginBike {
   margin-top: 20px;
-  
 }
 
 .fbBtn {
@@ -47,7 +46,7 @@ a {
 }
 
 .lgnemail, .socialBtn {
-  margin-top: 70px;
+  margin-top: 50px;
 }
 
 .searchBar {
@@ -98,4 +97,39 @@ footer {
 .footrA {
   color:#1de9b6;
   padding-bottom: 0px;
+}
+
+.sosCol{
+  margin: 20px;
+}
+
+img {
+  width: 50px;
+  padding: 5px;
+}
+
+.sosBtn {
+  margin: 20px;
+  padding-bottom: 0px;
+  background-color: white;
+  color: black;
+  font-size: 5px;
+  width: 100px;
+  height: 90px;
+  border-radius: 10px;
+  align-items: center;
+}
+h6 {
+  font-size: 9px;
+  margin-top: 0px;
+}
+
+.testoo span {
+  color: black !important;
+  /* font-size: 17px; */
+  /* padding: 10px 15px; */
+}
+
+.titllle {
+  padding-top: 50px;
 }

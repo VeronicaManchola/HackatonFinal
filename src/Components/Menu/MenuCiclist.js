@@ -10,7 +10,9 @@ class MenuCiclist extends Component {
     render() {
         return (
             <nav className="btnNav">
-                <h6 className="brand-logo center">Talleres</h6>
+                <h5 className="brand-logo center">
+                <strong>BICIHELPER</strong>
+                </h5>
                 <SideNav trigger={
                     <Button className="btnNav btn-flat pddng">
                         <a href=" " className="teal accent-3 z-depth 3">
@@ -18,13 +20,16 @@ class MenuCiclist extends Component {
                         </a>
                     </Button>} options={{ closeOnClick: true }}>
                     <SideNavItem userView user={{
-                        // image: ,
-                        name: 'Name'
-                    }} className="black-text" />
+                        // background: 'https://placeimg.com/640/480/tech',
+                        // image: 'static/media/react-materialize-logo.824c6ea3.svg',
+                        image: './assets/usuario_ciclista.jpg',
+                        name: 'Javier',
+                        email: 'Bicicleta de Ruta'
+                    }} className="testoo" />
+                    <SideNavItem divider />
                     <SideNavItem href="#!icon" icon="directions_bike">
                         BiciHelper
                         </SideNavItem>
-                    <SideNavItem divider />
                     <SideNavItem waves href="#!second" icon="notifications_none">
                         Notificaciones
                         </SideNavItem>

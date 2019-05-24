@@ -1,8 +1,9 @@
 import React from 'react';
 import Map from './Map.js';
-import LogOut from '../Login/LogOut.js';
+import firebase from '../../Firebase.js';
 import MenuCiclist from '../Menu/MenuCiclist.js';
 import SearchBar from './SearchBar.js';
+import BottomBtn from './BottomBtn.js';
 
 class Home extends React.Component {
     constructor(props) {
@@ -14,6 +15,10 @@ class Home extends React.Component {
             lng: false,
             // lat: "-33.41915",
             // lng: "-70.6418",
+            watchId: null,
+            user: null,
+            address: null,
+            latLng: null
         }
     }
 
@@ -39,15 +44,22 @@ class Home extends React.Component {
         }
     }
 
+    componentDidUpdate(){
+        let user = firebase.auth().currentUser;
+        if(this.state.user === user){
+            this.props.history.push("/");
+            navigator.geolocation.clearWatch(this.state.watchId);
+        }
+    }
+
+    pickedMarker = (address, latLng) => {
+        this.setState({ address: address, latLng: latLng })
+    }
+
     render() {
         return (
             <div>
                 <MenuCiclist />
-                <div className="container">
-                    <div className="row">
-                        <button onClick={() => LogOut(this.props, this.state.watchId)}>Cerrar sesión</button>
-                    </div>
-                </div>
                 {this.state.lat && <Map
                     app_id={this.state.app_id}
                     app_code={this.state.app_code}
@@ -55,10 +67,12 @@ class Home extends React.Component {
                     lat= {this.state.lat}
                     lng={this.state.lng}
                     marker={this.state.marker}
+                    markerInfo={this.pickedMarker}
                 />}
                 <div className="row">
-                    <SearchBar />
+                    <SearchBar markerAddress={this.state.address} markerLatLng={this.state.latLng}/>
                 </div>
+                <BottomBtn />
             </div>
         )
     }

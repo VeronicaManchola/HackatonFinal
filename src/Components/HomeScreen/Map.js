@@ -17,7 +17,9 @@ export default class Map extends React.Component {
             bikeHelp: [],
             bikeStore: [],
             bikeTechService: [],
-            ui: null
+            ui: null,
+            vicinity: null,
+            latLng: null
         }
 
         this.markers = [];
@@ -171,6 +173,8 @@ export default class Map extends React.Component {
                             <h6>${bikes.vicinity}</h6>`
                 })
                 this.state.ui.addBubble(info);
+                this.setState({vicinity: bikes.vicinity, latLng: bikes.position});
+                this.props.markerInfo(this.state.vicinity, this.state.latLng);
             }, false)
         });
         // console.log(this.map.getObjects())
@@ -187,6 +191,8 @@ export default class Map extends React.Component {
                             <h6>${bikes.vicinity}</h6>`
                 })
                 this.state.ui.addBubble(info);
+                this.setState({vicinity: bikes.vicinity, latLng: bikes.position});
+                this.props.markerInfo(this.state.vicinity, this.state.latLng);
             }, false)
         });
         // console.log(this.map.getObjects())
@@ -203,6 +209,8 @@ export default class Map extends React.Component {
                             <h6>${bikes.vicinity}</h6>`
                 })
                 this.state.ui.addBubble(info);
+                this.setState({vicinity: bikes.vicinity, latLng: bikes.position});
+                this.props.markerInfo(this.state.vicinity, this.state.latLng);
             }, false)
         });
         // console.log(this.map.getObjects())

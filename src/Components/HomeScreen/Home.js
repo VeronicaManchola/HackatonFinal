@@ -1,6 +1,6 @@
 import React from 'react';
 import Map from './Map.js';
-// import LogOut from '../Login/LogOut.js';
+import firebase from '../../Firebase.js';
 import MenuCiclist from '../Menu/MenuCiclist.js';
 import SearchBar from './SearchBar.js';
 import BottomBtn from './BottomBtn.js';
@@ -10,7 +10,11 @@ class Home extends React.Component {
         super(props);
         this.state = {
             app_id: "fhk2odOlobSO5rRWPQ73",
-            app_code: "BgS4fH56ONRVytxVXgfF0w"
+            app_code: "BgS4fH56ONRVytxVXgfF0w",
+            watchId: null,
+            user: null,
+            address: null,
+            latLng: null
         }
     }
 
@@ -36,15 +40,22 @@ class Home extends React.Component {
         }
     }
 
+    componentDidUpdate(){
+        let user = firebase.auth().currentUser;
+        if(this.state.user === user){
+            this.props.history.push("/");
+            navigator.geolocation.clearWatch(this.state.watchId);
+        }
+    }
+
+    pickedMarker = (address, latLng) => {
+        this.setState({ address: address, latLng: latLng })
+    }
+
     render() {
         return (
             <div>
                 <MenuCiclist />
-                {/* <div className="container">
-                    <div className="row">
-                        <button onClick={() => LogOut(this.props, this.state.watchId)}>Cerrar sesión</button>
-                    </div>
-                </div> */}
                 <Map
                     app_id={this.state.app_id}
                     app_code={this.state.app_code}
@@ -52,8 +63,11 @@ class Home extends React.Component {
                     lat={this.state.lat ? this.state.lat : "-33.4489"}
                     lng={this.state.lng ? this.state.lng : "-70.6693"}
                     marker={this.state.marker}
+                    markerInfo={this.pickedMarker}
                 />
-                <SearchBar />
+                <div className="row">
+                    <SearchBar markerAddress={this.state.address} markerLatLng={this.state.latLng}/>
+                </div>
                 <BottomBtn />
             </div>
         )

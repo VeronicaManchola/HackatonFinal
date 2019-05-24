@@ -1,18 +1,26 @@
+import React, { Component } from 'react';
 import firebase from 'firebase';
 
-function LoginWithFacebook(){
-    let provider = new firebase.auth.FacebookAuthProvider();
+class LoginWithFacebook extends Component {
 
-    firebase
-        .auth()
-        .signInWithRedirect(provider)
-        .then(function (result) {
-            console.log(result.user + "logged in")
-            this.props.history.push('/Home');
-        })
-        .catch(function (error) {
-            console.log(error.code)
-        });
+    handleClick() {
+
+        let provider = new firebase.auth.FacebookAuthProvider();
+
+        firebase
+            .auth()
+            .signInWithPopup(provider)
+            .then(() => {
+                this.props.history.push('/Home');
+            })
+            .catch((error) => {
+                console.log(error.code)
+            });
+    }
+
+    render() {
+        return <h4 className="waves-effect small waves-light btn fbBtn" onClick={this.handleClick}>Iniciar con Facebook</h4>
+    }
 }
 
 export default LoginWithFacebook;

@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
 import { TextInput } from 'react-materialize';
+import { Link } from 'react-router-dom';
 
 class SearchBar extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            address: '',
+            address: null,
+            latLng: null
         };
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleInputChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
-    };
+    componentWillReceiveProps(props) {
+        const index = props.markerAddress ? props.markerAddress.indexOf("<") : null;
+        const partialAddress = index ? props.markerAddress.slice(0, index) : null;
+        const remAddress = partialAddress ? props.markerAddress.slice(index + 5, props.markerAddress.length) : null;
+        const address = remAddress ? partialAddress + ", " + remAddress : null;
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        const address = this.state.address;
-    };
+        this.setState({ address: address, latLng: props.markerLatLng })
+    }
+
+    handleChange(event) {
+        let coord = event.target.getAttribute("coord");
+        this.setState({ address: event.target.value, latLng: coord });
+    }
 
     render() {
-        const address = this.state.address;
         return (
             <div className="container center">
                 <div className="row">
@@ -30,13 +37,14 @@ class SearchBar extends Component {
                     <div className="col s8 searchBar">
                         <TextInput
                             id="inputAddress"
-                            name="address" value={address}
+                            coord={this.state.latLng}
+                            value={this.state.address}
                             placeholder="Ingresar dirección del taller"
-                            onChange={this.handleInputChange}>
+                            onChange={this.handleChange}>
                         </TextInput>
                     </div>
                     <div className="col s3 searchBar">
-                        <button onClick={this.handleSubmit} className="waves-effect waves-light btn-flat btnNav white-text btnIr center">Ir</button>
+                        <h4><Link to={{ pathname: "/HwgMap", state: { address: this.state.address, latLng: this.state.latLng}}} className="waves-effect waves-light btn-flat btnNav white-text btnIr center">Ir</Link></h4>
                     </div>
                 </div>
             </div>

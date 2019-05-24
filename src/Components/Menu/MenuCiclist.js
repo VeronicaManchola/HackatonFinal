@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-// import LogOut from '../Login/LogOut.js';
 import { SideNav, SideNavItem, Button } from 'react-materialize';
+import LogOut from '../Login/LogOut.js';
 
 class MenuCiclist extends Component {
-    // constructor(props) {
-    //     super(props);
-    //         }
 
     render() {
         return (
@@ -46,9 +43,7 @@ class MenuCiclist extends Component {
                         Ayuda
                         </SideNavItem>
                     <SideNavItem divider />
-                    <SideNavItem waves href="#!seventh" icon="exit_to_app">
-                        Cerrar Sesión
-                        </SideNavItem>
+                    <LogOut />
                 </SideNav>
             </nav>
         )
